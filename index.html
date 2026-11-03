@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="theme-color" content="#070b17"><title>VOIDLINE — Anti-gravity racing</title><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Cpath fill='%23c7ff61' d='M5 10h22l23 57 23-57h22L57 90H43z'/%3E%3C/svg%3E"><link rel="stylesheet" href="/src/style.css"></head>
+<body>
+<div id="world"></div><div class="vignette"></div><div id="speed-lines"></div><div id="damage"></div>
+<header><a class="brand" href="#" aria-label="VOIDLINE home"><span class="brand-icon">V</span> VOIDLINE<span class="brand-suffix">// RACING SYSTEMS</span></a><div class="header-right"><span class="live-dot"></span><span id="system-status">SYSTEM ONLINE</span><button id="audio-toggle" class="small-button" aria-label="Toggle sound">SOUND ON</button><button id="pause-button" class="small-button hidden">PAUSE <kbd>ESC</kbd></button></div></header>
+<main id="menu" class="screen">
+  <div class="eyebrow"><span></span> ANTI-GRAVITY CHAMPIONSHIP / SEASON 01</div>
+  <h1>BEYOND<br>THE <span>LIMIT.</span></h1>
+  <p class="intro">No roads. No limits. Just you, the void,<br>and the next corner.</p>
+  <button class="primary" id="enter-button">ENTER THE GRID <span>↗</span></button>
+  <div class="menu-details"><div><small>LOCATION</small><strong>KEPLER’S WAKE</strong></div><div><small>FORMAT</small><strong>05 PILOTS / 03 LAPS</strong></div><div><small>CLASS</small><strong>ANTI-GRAVITY</strong></div></div>
+  <div class="hero-label"><span>01 / CIRCUIT</span><strong>THE HELIX<br>EXPANSE</strong><p>Elevated raceway · Sector K–09</p><div class="coordinate">34° 08′ N &nbsp; / &nbsp; 118° 19′ E</div></div>
+</main>
+<section id="selection" class="screen hidden">
+  <div class="eyebrow">HANGAR / SELECT YOUR CRAFT</div><h2>CHOOSE YOUR <em>EDGE.</em></h2><p class="section-note">Three machines. Three ways to break the horizon.</p>
+  <div class="craft-cards" id="craft-cards"></div>
+  <div class="selection-bottom"><button id="back-button" class="secondary">← BACK</button><div class="race-spec"><span>THE HELIX EXPANSE</span><small>3 LAPS &nbsp; • &nbsp; 5 PILOTS &nbsp; • &nbsp; DAYBREAK</small></div><button id="start-button" class="primary">LAUNCH RACE <span>→</span></button></div>
+</section>
+<section id="hud" class="hidden">
+  <div class="race-top"><div class="position"><small>POSITION</small><strong><span id="position">05</span><i>/ 05</i></strong></div><div class="lap"><small>LAP</small><strong><span id="lap">01</span><i>/ 03</i></strong></div><div class="timing"><small>RACE TIME</small><strong id="time">00:00.000</strong><span>BEST <b id="best">— — : — —</b></span></div></div>
+  <div id="notification" aria-live="polite"></div><div id="countdown"></div>
+  <div class="race-bottom"><div class="map-panel"><canvas id="minimap" width="260" height="200"></canvas><div><span class="live-dot"></span> HELIX EXPANSE <small>SECTOR <b id="sector">01</b> / 12</small></div></div><div class="telemetry"><div class="speed"><strong id="speed">000</strong><span>KM/H<small id="drive-mode">ANTI-GRAV ACTIVE</small></span></div><div class="meter-row"><label>SHIELD <b id="shield-value">100</b></label><div class="meter"><i id="shield-bar"></i></div></div><div class="meter-row boost"><label>BOOST <b id="boost-value">100</b></label><div class="meter"><i id="boost-bar"></i></div></div></div></div>
+</section>
+<section id="finish" class="modal hidden"><div class="eyebrow">RACE COMPLETE / HELIX EXPANSE</div><h2 id="finish-title">HORIZON CONQUERED.</h2><div class="results"><div><small>FINAL POSITION</small><strong id="result-position"></strong></div><div><small>TOTAL TIME</small><strong id="result-time"></strong></div><div><small>BEST LAP</small><strong id="result-best"></strong></div></div><div class="modal-buttons"><button id="again-button" class="primary">RACE AGAIN ↗</button><button id="hangar-button" class="secondary">RETURN TO HANGAR</button></div></section>
+<section id="pause" class="modal hidden"><div class="eyebrow">SYSTEM ON HOLD</div><h2>TAKE A <em>BREATH.</em></h2><p>The void can wait.</p><div class="modal-buttons"><button id="resume-button" class="primary">RESUME →</button><button id="quit-button" class="secondary">RETURN TO HANGAR</button></div></section>
+<footer><div class="control-strip"><span><kbd>W A S D</kbd> PILOT</span><span><kbd>Q</kbd><kbd>E</kbd> AIR BRAKES</span><span><kbd>SPACE</kbd> DRIFT</span><span><kbd>SHIFT</kbd> BOOST</span><span><kbd>R</kbd> RESET</span></div><span class="footer-version">ORIGINAL CIRCUIT / V.01</span></footer>
+<div id="fatal" class="modal hidden"><h2>LAUNCH INTERRUPTED</h2><p id="fatal-message"></p></div>
+<script type="module" src="/src/main.js"></script>
+</body></html>

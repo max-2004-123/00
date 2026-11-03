@@ -1,0 +1,8 @@
+export class AudioSystem{
+ constructor(){this.enabled=true;this.ctx=null;}
+ async init(){try{if(!this.ctx){this.ctx=new AudioContext();this.master=this.ctx.createGain();this.master.gain.value=.14;this.master.connect(this.ctx.destination);this.engine=this.ctx.createOscillator();this.engine.type='sawtooth';this.filter=this.ctx.createBiquadFilter();this.filter.type='lowpass';this.filter.frequency.value=220;this.engineGain=this.ctx.createGain();this.engineGain.gain.value=0;this.engine.connect(this.filter).connect(this.engineGain).connect(this.master);this.engine.start();}await this.ctx.resume();}catch{this.enabled=false;}}
+ toggle(){this.enabled=!this.enabled;if(this.master)this.master.gain.value=this.enabled?.14:0;return this.enabled;}
+ tone(freq=600,duration=.15,type='sine'){if(!this.ctx||!this.enabled)return;const t=this.ctx.currentTime,o=this.ctx.createOscillator(),g=this.ctx.createGain();o.type=type;o.frequency.setValueAtTime(freq,t);o.frequency.exponentialRampToValueAtTime(Math.max(30,freq*.5),t+duration);g.gain.setValueAtTime(.35,t);g.gain.exponentialRampToValueAtTime(.001,t+duration);o.connect(g).connect(this.master);o.start(t);o.stop(t+duration);}
+ event(type){const sounds={boost:[180,.4,'sawtooth'],pad:[240,.25,'sawtooth'],pickup:[1200,.3,'sine'],collision:[70,.2,'square'],respawn:[95,.6,'sawtooth'],lap:[880,.5,'sine'],jump:[330,.2,'sine']};if(sounds[type])this.tone(...sounds[type]);}
+ update(speed,boost,racing){if(!this.ctx)return;const now=this.ctx.currentTime;this.engine.frequency.setTargetAtTime(38+Math.abs(speed)*1.4+(boost?35:0),now,.08);this.filter.frequency.setTargetAtTime(150+Math.abs(speed)*4,now,.1);this.engineGain.gain.setTargetAtTime(racing?.035+Math.abs(speed)*.001:0,now,.1);}
+}
